@@ -5,6 +5,7 @@ import SnackbarComponent from "./SnackbarComponent";
 import "../CSS/LoginAndRegisterComponent.css";
 import axios from "axios";
 import { logoutUser } from "./authentication/AuthComponent";
+import { BACKEND_URL } from "../Config/config";
 
 const ChangePasssword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -21,7 +22,7 @@ const ChangePasssword = () => {
       confirmPassword: confirmPassword,
     };
     axios
-      .post("/api/users/changepassword", objTosend)
+      .post(BACKEND_URL + "/api/users/changepassword", objTosend)
       .then((data) => {
         // console.log("data", data);
         setPending(false);

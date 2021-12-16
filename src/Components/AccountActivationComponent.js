@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router";
 import { getLastItemFromUrl } from "./helper/Helper";
 import axios from "axios";
 import SnackbarComponent, { snackbarEmitter } from "./SnackbarComponent";
+import { BACKEND_URL } from "../Config/config";
 
 const AccountActivationComponent = () => {
   const location = useLocation();
@@ -28,7 +29,7 @@ const AccountActivationComponent = () => {
       }
 
       await axios
-        .post("/api/users/tokenvalidation")
+        .post(BACKEND_URL + "/api/users/tokenvalidation")
         .then((data) => {
           // console.log(data);
           setPending(false);

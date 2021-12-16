@@ -9,6 +9,7 @@ import SnackbarComponent, { snackbarEmitter } from "./SnackbarComponent";
 import "../CSS/LoginAndRegisterComponent.css";
 import { validateEmail } from "./helper/Helper";
 import axios from "axios";
+import { BACKEND_URL } from "../Config/config";
 
 const RegistrationComponent = () => {
   let othersubjectObj = {
@@ -52,7 +53,7 @@ const RegistrationComponent = () => {
   const getAllSubjects = async () => {
     setPending(true);
     axios
-      .get("/api/subjects")
+      .get(BACKEND_URL + "/api/subjects")
       .then((data) => {
         // console.log("subjects", data);
         setPending(false);
@@ -97,7 +98,7 @@ const RegistrationComponent = () => {
     };
     let result = {};
     await axios
-      .post("/api/users/creationvalidation", objTosend)
+      .post(BACKEND_URL + "/api/users/creationvalidation", objTosend)
       .then((data) => {
         // console.log("validation", data);
         if (data.data.status !== 200 && data.data.status !== 500) {
@@ -130,7 +131,7 @@ const RegistrationComponent = () => {
     let result = {};
     await axios
       .post(
-        "/api/subjects/update",
+        BACKEND_URL + "/api/subjects/update",
         {
           id: createdSubjectId,
         },
@@ -196,7 +197,7 @@ const RegistrationComponent = () => {
         name: otherSubjectValue,
       };
       await axios
-        .post("/api/subjects/create", subjectObj)
+        .post(BACKEND_URL + "/api/subjects/create", subjectObj)
         .then((data) => {
           // console.log("subject", data);
           if (data.data.status !== 200 && data.data.status !== 500) {
@@ -252,7 +253,7 @@ const RegistrationComponent = () => {
     if (password === confirmPassword) {
       // Axios Post
       await axios
-        .post("/api/users/create", objTosend)
+        .post(BACKEND_URL + "/api/users/create", objTosend)
         .then(async (user) => {
           // console.log(user);
           if (user.data.status === 200 && user.data.hasOwnProperty("token")) {
@@ -264,7 +265,10 @@ const RegistrationComponent = () => {
                 user.data.token
               );
               // console.log("updatedSubjectResult", updatedSubjectResult);
-              if (updatedSubjectResult.status !== 200 && updatedSubjectResult.status !== 500) {
+              if (
+                updatedSubjectResult.status !== 200 &&
+                updatedSubjectResult.status !== 500
+              ) {
                 setPending(false);
                 snackbarEmitter.emit("showsnackbar", {
                   snackbarText: updatedSubjectResult.message,

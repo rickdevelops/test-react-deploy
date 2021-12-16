@@ -6,6 +6,7 @@ import SnackbarComponent from "./SnackbarComponent";
 import "../CSS/LoginAndRegisterComponent.css";
 import { validateEmail } from "./helper/Helper";
 import axios from "axios";
+import { BACKEND_URL } from "../Config/config";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ const LoginComponent = () => {
     let email = objRecieved.email;
     let password = objRecieved.password;
     axios
-      .post("/api/users/login", {
+      .post(BACKEND_URL + "/api/users/login", {
         email: email,
         password: password,
       })

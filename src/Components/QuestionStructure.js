@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 import SnackbarComponent, { snackbarEmitter } from "./SnackbarComponent";
 import { logoutUser } from "./authentication/AuthComponent";
+import { BACKEND_URL } from "../Config/config";
 const QuestionStructure = ({ problemData = {}, update = false }) => {
   //   console.log("problemData", problemData, update);
 
@@ -30,44 +31,47 @@ const QuestionStructure = ({ problemData = {}, update = false }) => {
   const abortController = new AbortController();
 
   const subjectsForUser = () => {
-    // .post("/api/subjects/getsubjectdetailsbyuser")
-    axios.post("/api/subjects/getsubjectdetailsbyuser").then((data) => {
-      // console.log(data);
-      if (data.data.status === 200) {
-        // console.log("data is", data.data.data);
-        if (
-          data.data.data.subjectDetails &&
-          data.data.data.subjectDetails.length > 0
-        ) {
-          setSubjectOption(data.data.data.subjectDetails);
-          if (update === true) {
-            let index = data.data.data.subjectDetails.findIndex(
-              (subject) => subject.slug === problemData.subject_code
-            );
-            // console.log("index", index);
-            setTopicSelected(index);
-            setSubjectSelected(index);
+    // .post(BACKEND_URL+"/api/subjects/getsubjectdetailsbyuser")
+    axios
+      .post(BACKEND_URL + "/api/subjects/getsubjectdetailsbyuser")
+      .then((data) => {
+        // console.log(data);
+        if (data.data.status === 200) {
+          // console.log("data is", data.data.data);
+          if (
+            data.data.data.subjectDetails &&
+            data.data.data.subjectDetails.length > 0
+          ) {
+            setSubjectOption(data.data.data.subjectDetails);
+            if (update === true) {
+              let index = data.data.data.subjectDetails.findIndex(
+                (subject) => subject.slug === problemData.subject_code
+              );
+              // console.log("index", index);
+              setTopicSelected(index);
+              setSubjectSelected(index);
+            }
+          } else {
+            setSubjectOption([]);
           }
+          setPending(false);
+        } else if (data.data.status === 401) {
+          logoutUser();
+        } else if (data.data.status === 500) {
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText:
+              "Some error occured. Please try again after some time.",
+            snackbarColor: "error",
+          });
         } else {
           setSubjectOption([]);
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText: data.data.message,
+            snackbarColor: "error",
+          });
+          // console.log("error");
         }
-        setPending(false);
-      } else if (data.data.status === 401) {
-        logoutUser();
-      } else if (data.data.status === 500) {
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: "Some error occured. Please try again after some time.",
-          snackbarColor: "error",
-        });
-      } else {
-        setSubjectOption([]);
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: data.data.message,
-          snackbarColor: "error",
-        });
-        // console.log("error");
-      }
-    });
+      });
   };
   useEffect(() => {
     if (problemData && update) {
@@ -158,34 +162,36 @@ const QuestionStructure = ({ problemData = {}, update = false }) => {
     };
     // console.log("payload", payload);
     let result = {};
-    await axios.post("/api/topics/create", payload).then((data) => {
-      // console.log(data);
-      if (data.data.status === 200) {
-        result = {
-          topicslug: data.data.topic.slug,
-          status: 200,
-          message: data.data.message,
-        };
-      } else if (data.data.status === 401) {
-        logoutUser();
-      } else if (data.data.status === 500) {
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: "Some error occured. Please refresh and try again.",
-          snackbarColor: "error",
-        });
-      } else if (data.data.status === 403) {
-        result = {
-          status: 403,
-          message: data.data.message,
-        };
-      } else {
-        result = {
-          status: data.data.status,
-          message: data.data.message,
-        };
-        // console.log("error");
-      }
-    });
+    await axios
+      .post(BACKEND_URL + "/api/topics/create", payload)
+      .then((data) => {
+        // console.log(data);
+        if (data.data.status === 200) {
+          result = {
+            topicslug: data.data.topic.slug,
+            status: 200,
+            message: data.data.message,
+          };
+        } else if (data.data.status === 401) {
+          logoutUser();
+        } else if (data.data.status === 500) {
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText: "Some error occured. Please refresh and try again.",
+            snackbarColor: "error",
+          });
+        } else if (data.data.status === 403) {
+          result = {
+            status: 403,
+            message: data.data.message,
+          };
+        } else {
+          result = {
+            status: data.data.status,
+            message: data.data.message,
+          };
+          // console.log("error");
+        }
+      });
     return result;
   };
 
@@ -197,7 +203,10 @@ const QuestionStructure = ({ problemData = {}, update = false }) => {
           ? { subjectcode: subject }
           : { subjectcode: subject.slug };
       await axios
-        .post("/api/topics/gettopicsbysubjectfordropdown", payload)
+        .post(
+          BACKEND_URL + "/api/topics/gettopicsbysubjectfordropdown",
+          payload
+        )
         .then((data) => {
           // console.log(data);
           let OtherOptions = {
@@ -298,7 +307,7 @@ const QuestionStructure = ({ problemData = {}, update = false }) => {
     // console.log("delete");
     handleDBOperation(
       // "http://localhost:8000/questions_db/" + problemData.id + "/",
-      "/api/projects/delete/" + problemData._id + "/",
+      BACKEND_URL + "/api/projects/delete/" + problemData._id + "/",
       "DELETE",
       "Deleted"
     );
@@ -397,7 +406,7 @@ const QuestionStructure = ({ problemData = {}, update = false }) => {
       //   Update Call
       handleDBOperation(
         // "http://localhost:8000/questions_db/" + problemData.id + "/",
-        "/api/projects/update",
+        BACKEND_URL + "/api/projects/update",
         "POST",
         "Updated",
         question
@@ -406,7 +415,7 @@ const QuestionStructure = ({ problemData = {}, update = false }) => {
       //   Create Call
       handleDBOperation(
         // "http://localhost:8000/questions_db",
-        "/api/projects/create",
+        BACKEND_URL + "/api/projects/create",
         "POST",
         "Created",
         question

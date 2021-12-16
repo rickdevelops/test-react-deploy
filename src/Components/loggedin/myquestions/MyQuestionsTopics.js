@@ -3,6 +3,7 @@ import axios from "axios";
 import AllChapters from "../../AllChapters";
 import SnackbarComponent, { snackbarEmitter } from "../../SnackbarComponent";
 import { logoutUser } from "../../authentication/AuthComponent";
+import { BACKEND_URL } from "../../../Config/config";
 
 const MyQuestionTopics = () => {
   const [chapters, setChapters] = useState([]);
@@ -14,35 +15,38 @@ const MyQuestionTopics = () => {
   const getChapters = () => {
     let lastItemOfPath = window.location.pathname.split("/").pop();
     let dataTBS = { subjectcode: lastItemOfPath };
-    axios.post("/api/topics/gettopicdetailsbyuser", dataTBS).then((data) => {
-      // console.log(data);
-      if (data.data.status === 200) {
-        // console.log("data is", data.data.data);
-        if (data.data.data && data.data.data.length > 0) {
-          setChapters(data.data.data);
+    axios
+      .post(BACKEND_URL + "/api/topics/gettopicdetailsbyuser", dataTBS)
+      .then((data) => {
+        // console.log(data);
+        if (data.data.status === 200) {
+          // console.log("data is", data.data.data);
+          if (data.data.data && data.data.data.length > 0) {
+            setChapters(data.data.data);
+          } else {
+            setChapters([]);
+          }
+          setPending(false);
+        } else if (data.data.status === 401) {
+          logoutUser();
+        } else if (data.data.status === 500) {
+          setChapters([]);
+          setPending(false);
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText:
+              "Some error occured. Please try again after some time.",
+            snackbarColor: "error",
+          });
         } else {
           setChapters([]);
+          setPending(false);
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText: data.data.message,
+            snackbarColor: "error",
+          });
+          // console.log("error");
         }
-        setPending(false);
-      } else if (data.data.status === 401) {
-        logoutUser();
-      } else if (data.data.status === 500) {
-        setChapters([]);
-        setPending(false);
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: "Some error occured. Please try again after some time.",
-          snackbarColor: "error",
-        });
-      } else {
-        setChapters([]);
-        setPending(false);
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: data.data.message,
-          snackbarColor: "error",
-        });
-        // console.log("error");
-      }
-    });
+      });
   };
 
   return (

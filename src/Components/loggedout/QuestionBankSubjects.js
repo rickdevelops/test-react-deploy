@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AllSubjects from "../AllSubjects";
 import { getToken } from "../authentication/AuthComponent";
 import SnackbarComponent, { snackbarEmitter } from "../SnackbarComponent";
+import { BACKEND_URL } from "../../Config/config";
 
 const QuestionBankSubjects = () => {
   const [subjects, setSubjects] = useState([]);
@@ -13,7 +14,7 @@ const QuestionBankSubjects = () => {
   }, []);
 
   const getAllSubjects = () => {
-    axios.get("/api/subjects/").then((data) => {
+    axios.get(BACKEND_URL + "/api/subjects/").then((data) => {
       //   console.log(data);
       setPending(false);
       if (data.status === 200 && data.data.length > 0) {

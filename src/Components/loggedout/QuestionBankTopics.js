@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AllChapters from "../AllChapters";
 import { getToken } from "../authentication/AuthComponent";
 import SnackbarComponent, { snackbarEmitter } from "../SnackbarComponent";
+import { BACKEND_URL } from "../../Config/config";
 
 const QuestionBankTopics = () => {
   const [topics, setTopics] = useState([]);
@@ -15,29 +16,31 @@ const QuestionBankTopics = () => {
   const getAllTopics = () => {
     let lastItemOfPath = window.location.pathname.split("/").pop();
     let dataTBS = { subjectcode: lastItemOfPath };
-    axios.post("/api/projects/uniquetopicsinprojects", dataTBS).then((data) => {
-      // console.log(data);
-      if (data.data.status === 200 && data.data.data.length > 0) {
-        setTopics(data.data.data);
-      } else if (data.data.status === 404) {
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: `No Topics added for this Subject Yet. Start by creating a Question in this Subject and topic. `,
-          snackbarColor: "error",
-        });
-      } else if (data.data.status === 200 && data.data.data.length === 0) {
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: `No Topics added for this Subject Yet. `,
-          snackbarColor: "error",
-        });
-        setTopics([]);
-      } else {
-        snackbarEmitter.emit("showsnackbar", {
-          snackbarText: `Some error occured. Please try after some time. `,
-          snackbarColor: "error",
-        });
-      }
-      setPending(false);
-    });
+    axios
+      .post(BACKEND_URL + "/api/projects/uniquetopicsinprojects", dataTBS)
+      .then((data) => {
+        // console.log(data);
+        if (data.data.status === 200 && data.data.data.length > 0) {
+          setTopics(data.data.data);
+        } else if (data.data.status === 404) {
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText: `No Topics added for this Subject Yet. Start by creating a Question in this Subject and topic. `,
+            snackbarColor: "error",
+          });
+        } else if (data.data.status === 200 && data.data.data.length === 0) {
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText: `No Topics added for this Subject Yet. `,
+            snackbarColor: "error",
+          });
+          setTopics([]);
+        } else {
+          snackbarEmitter.emit("showsnackbar", {
+            snackbarText: `Some error occured. Please try after some time. `,
+            snackbarColor: "error",
+          });
+        }
+        setPending(false);
+      });
   };
 
   return (

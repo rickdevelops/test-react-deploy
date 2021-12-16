@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SnackbarComponent from "./SnackbarComponent";
 import "../CSS/LoginAndRegisterComponent.css";
 import axios from "axios";
+import { BACKEND_URL } from "../Config/config";
 
 const ResetPasswordComponent = () => {
   const [resetPasswordToken, setResetPasswordToken] = useState("");
@@ -42,7 +43,7 @@ const ResetPasswordComponent = () => {
     }
     let payload = { token: lastItemOfPath };
     axios
-      .post("/api/users/resetpassword/validatetoken", payload)
+      .post(BACKEND_URL + "/api/users/resetpassword/validatetoken", payload)
       .then((data) => {
         // console.log("data", data);
         setPending(false);
@@ -77,7 +78,7 @@ const ResetPasswordComponent = () => {
 
   const handleResetPassword = (payload) => {
     axios
-      .post("/api/users/resetpassword", payload)
+      .post(BACKEND_URL + "/api/users/resetpassword", payload)
       .then((data) => {
         setPending(false);
         setFormSucess(true);

@@ -4,6 +4,7 @@ import { getSubjectAndTopicFromUrl } from "../../helper/Helper";
 import SnackbarComponent, { snackbarEmitter } from "../../SnackbarComponent";
 import QuestionList from "../../QuestionList";
 import { logoutUser } from "../../authentication/AuthComponent";
+import { BACKEND_URL } from "../../../Config/config";
 
 const MyQuestionsLists = () => {
   const [pending, setPending] = useState(true);
@@ -18,7 +19,10 @@ const MyQuestionsLists = () => {
       topiccode: topiccode,
     };
     axios
-      .post("/api/projects/showprojectsforauserinasubjectandtopic", payload)
+      .post(
+        BACKEND_URL + "/api/projects/showprojectsforauserinasubjectandtopic",
+        payload
+      )
       .then((data) => {
         // console.log(data);
         if (data.data.status === 200) {

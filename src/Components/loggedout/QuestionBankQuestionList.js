@@ -5,6 +5,7 @@ import SnackbarComponent, { snackbarEmitter } from "../SnackbarComponent";
 import QuestionList from "../QuestionList";
 import { getToken } from "../authentication/AuthComponent";
 import { logoutUser } from "../authentication/AuthComponent";
+import { BACKEND_URL } from "../../Config/config";
 
 const QuestionBankQuestionList = () => {
   const [pending, setPending] = useState(true);
@@ -26,7 +27,10 @@ const QuestionBankQuestionList = () => {
       axios.defaults.headers.common["Authorization"] = null;
     }
     axios
-      .post("/api/projects/showprojectsforsubjectandtopic", payload)
+      .post(
+        BACKEND_URL + "/api/projects/showprojectsforsubjectandtopic",
+        payload
+      )
       .then((data) => {
         // console.log(data);
         if (data.data.status === 200) {
