@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,26 @@
   to {
     transform: rotate(360deg);
   }
+} */
+/* .App{
+  height: 100vh;
+} */
+.App-header {
+  height: 10vh;
+}
+.App-content {
+  margin: 2vh;
+  /* margin-top: 2vh;
+  margin-bottom: 2vh; */
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+.App-footer {
+  margin-top: auto;
+  /* bottom:0; */
+  width: 100%;
+  height: 6vh;
+  /* height:60px;    */ /* Height of the footer */
+  background: #efefef;
 }

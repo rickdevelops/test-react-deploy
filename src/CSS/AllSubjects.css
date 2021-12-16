@@ -1,0 +1,63 @@
+.all-subjects {
+  /* margin: 2vh; */
+  /* margin-top: 2vh;
+  margin-bottom: 2vh; */
+  min-height: 76vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.all-subjects-content {
+  width: 100%;
+  /* height: 10vh;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  margin: auto;
+}
+/* .MuiGrid-root .MuiGrid-item .MuiGrid-grid-xs-4 .css-xzymrq-MuiGrid-root {
+  margin: auto;
+} */
+/* .css-1et7qun-MuiGrid-root > .MuiGrid-item {
+  padding-left: 0;
+}
+.css-1et7qun-MuiGrid-root > .MuiGrid-item {
+  padding-top: 0;
+} */
+.card-action-btn {
+  margin-top: auto;
+}
+/* Card {
+  display: "flex";
+  flex-direction: "column";
+} */
+.card-footer {
+  margin-top: auto;
+  /* margin-top: calc(50%); */
+  bottom: 0;
+}
+Link {
+  text-decoration: none;
+}
+.subject-card {
+  background-color: #f5f5f5;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 1rem;
+  min-width: 300;
+  min-height: 300;
+  height: "100%";
+  margin: auto; */
+}
+.subject-card:hover {
+  background-color: #efefef;
+  box-shadow: 0 5px 5px rgb(107, 107, 107);
+}
+
+.subject-card:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

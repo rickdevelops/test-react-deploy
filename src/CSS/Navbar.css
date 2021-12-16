@@ -1,0 +1,70 @@
+.navbar {
+  position: fixed;
+  z-index: 1;
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  /* max-width: 400px; */
+  width: 100%;
+  margin: 0 auto;
+  border-bottom: 1px solid #e7e7e7;
+  background-color: #e1e1e1;
+  opacity: 0.8;
+  box-shadow: 2px -1px 23px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px -1px 23px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px -1px 23px -5px rgba(0, 0, 0, 0.75);
+}
+.navbar h1,
+.navbar h1 span {
+  font-family: "Lobster", cursive;
+  font-size: 1.5rem;
+  color: #f1356d;
+}
+.navbar h1 span {
+  color: #f144f1;
+}
+.navbar .links {
+  margin-left: auto;
+}
+.navbar a {
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: #f1356d;
+}
+.navbar .login-logout-btn {
+  /* margin-left: auto; */
+  margin: 0 3rem 0 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: #f1356d;
+  border-radius: 8px;
+}
+
+.navbar .login-logout-btn:hover {
+  color: "red";
+  background-color: "black";
+}
+
+.create-question-btn {
+  margin-right: 1rem;
+  text-decoration: none;
+  padding: 6px;
+  color: "black";
+  background-color: "#f1356d";
+  border-radius: "8px";
+}
+
+.navbar .create-question-btn:hover {
+  color: "red";
+  background-color: "black";
+}
+
+@media screen and (max-width: 485px) {
+  .navbar .create-question-btn {
+    /* .card-component-header {  */
+    display: none;
+  }
+}

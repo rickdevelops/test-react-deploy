@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+
+.landing-component {
+  /* height: 50vh; */
+  margin: auto;
+  padding: 0%;
+  /* overflow: hidden; */
+}
+.landing-component img {
+  width: 90%;
+}
+.card-component-header {
+  color: #f1356d;
+  /* font-weight: 900;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem; */
+  /* font-size: 5vw; */
+}
+.card-component {
+  /* width: 100%;
+  height: 100%; */
+  /* background-color: #efeffe; */
+  border-radius: 10px;
+  box-shadow: 0px 0px 1rem #000000;
+  margin: auto;
+  padding-top: 1rem;
+  position: relative;
+  background: rgb(
+    204,
+    204,
+    204
+  ); /* Fallback for older browsers without RGBA-support */
+  background: rgba(204, 204, 204, 0.5);
+  /* opacity: 0.5; */
+  /* padding: 0.6rem;
+  margin: 0.6rem; */
+}
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.card-component {
+  border-radius: 25px;
+  margin-right: 1rem;
+}
+
+.card-footer {
+  padding-bottom: 2rem;
+}
+.card-footer .start-btn {
+  text-decoration: none;
+  background-color: #3f50f5;
+  color: white;
+  margin: 0.2rem 0 0.2rem 0;
+  padding: 0.4rem 1.25rem 0.4rem 1.25rem;
+  border-radius: 20px;
+  /* box-shadow: 0px 0px 10px #000000; */
+}
+.card-footer .start-btn:hover-visible {
+  /* background-color: #efeffe; */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #000000;
+}
+.card-footer .start-btn i {
+  margin-left: 1rem;
+}
+.landing-component .MuiGrid-root .MuiGrid-item {
+  margin: auto;
+}
+/* MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4 css-1xrvdmz-MuiGrid-root */
+.MuiGrid-root .MuiGrid-item .MuiPaper-root {
+  /* box-shadow: 0px 0px 5rem #000000; */
+  box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 1px 15px 0px rgba(0, 0, 0, 0.35);
+}
+@media screen and (min-width: 941px) {
+  .MuiTypography-root.MuiTypography-h3.MuiTypography-gutterBottom.card-component-header.css-1lhqwvu-MuiTypography-root {
+    font-size: 3.5rem;
+    margin: 2rem;
+  }
+}

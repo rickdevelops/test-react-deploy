@@ -1,0 +1,31 @@
+.MuiGrid-root.MuiGrid-item.search-question-text {
+  margin: auto 2rem;
+  color: #b4b4b4;
+}
+.popper {
+  width: fit-content;
+  max-width: 50%;
+}
+.MuiGrid-root.MuiGrid-container {
+  margin: auto 0;
+}
+.MuiGrid-root.MuiGrid-container.autocomplete-component {
+  margin: 2rem 0;
+}
+.nothing-found {
+  color: #b4b4b4;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .MuiGrid-root.MuiGrid-item.search-question-text {
+    display: none;
+  }
+  .MuiGrid-root.MuiGrid-item.autocomplete-input {
+    margin: auto;
+  }
+  .popper {
+    max-width: 70%;
+  }
+}

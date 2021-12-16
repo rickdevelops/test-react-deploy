@@ -1,0 +1,73 @@
+.question-structure {
+  max-width: 80%;
+  margin: 0 5rem;
+  /* display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: -webkit-fill-available; */
+}
+.question-structure label {
+  text-align: left;
+  display: block;
+}
+.question-structure h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
+.question-structure textarea,
+.question-structure select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.question-structure button {
+  /* background: #f1356d; */
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.question-structure .update-button {
+  /* background-color: #f1356d; */
+  background-color: rgb(2, 145, 2);
+}
+.delete-button {
+  margin: 1rem 0 0 5rem;
+  background-color: red;
+}
+.question-structure span {
+  width: 10%;
+}
+.question-structure input {
+  width: 90%;
+}
+/* .question-structure span, */
+.question-structure input {
+  padding: 1em 0;
+  margin: 1em 0 0 0;
+  border: 1px solid #ddd;
+}
+.question-structure form button {
+  margin-top: 1em;
+}
+@media screen and (max-width: 520px) {
+  .question-structure {
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 450px) {
+  .question-structure {
+    margin: 0 auto;
+    max-width: 85%;
+    text-align: center;
+  }
+}

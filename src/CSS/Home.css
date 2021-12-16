@@ -1,0 +1,38 @@
+.home {
+  text-align: center;
+}
+.home h1 {
+  /* text-align: center; */
+  color: aqua;
+}
+
+.blog-preview {
+  text-align: center;
+}
+.blog-preview p {
+  line-height: 2rem;
+}
+.blog-preview a {
+  text-decoration: none;
+}
+
+.blog-details {
+  text-align: center;
+}
+.blog-details h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 10px;
+}
+.blog-details div {
+  margin: 20px 0;
+}
+.blog-details button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  margin: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}

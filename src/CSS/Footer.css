@@ -1,0 +1,19 @@
+.footer {
+  /* padding: 20px; */
+  display: flex;
+  justify-content: center;
+  padding-top: 1vh;
+  z-index: 1;
+  /* align-items: center; */
+  /* max-width: 400px; */
+  /* margin: 0 auto; */
+  /* border-bottom: 1px solid #f2f2f2; */
+}
+.footer h4 {
+  color: blueviolet;
+  /* padding-top: auto;
+    text-align: center; */
+}
+i {
+  color: red;
+}
