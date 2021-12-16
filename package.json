@@ -1,11 +1,16 @@
 {
-  "name": "react-qa-platform",
+  "name": "question-bank",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/material": "^5.0.6",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.24.0",
+    "fbemitter": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -17,6 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://questionbankbackend.herokuapp.com",
   "eslintConfig": {
     "extends": [
       "react-app",
